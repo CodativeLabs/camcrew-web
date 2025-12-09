@@ -4,19 +4,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAMCREW</title>
+    <title>CAMCREW - Digital Video Production Studio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
         rel="stylesheet">
     <style>
-        body,
-        html {
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        body,
+        html {
             height: 100%;
             width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
             cursor: none;
         }
 
@@ -53,7 +61,6 @@
             justify-content: space-between;
             font-family: "Poppins", sans-serif;
             font-weight: 500;
-            font-style: normal;
             color: white;
             background-color: black;
         }
@@ -63,7 +70,6 @@
             font-size: 256px;
             font-family: "Bebas Neue", sans-serif;
             font-weight: 400;
-            font-style: normal;
             color: white;
             mix-blend-mode: difference;
             z-index: 3;
@@ -71,22 +77,47 @@
             top: 20px;
             line-height: 0.85;
             pointer-events: none;
+            opacity: 0;
+            transform: translateY(50px);
         }
 
-        .heading-1 {
+        .desktop-heading-1 {
             font-size: 32px;
+            opacity: 0;
+            transform: translateX(-30px);
+            mix-blend-mode: normal;
         }
 
-        .heading-2 {
+        .desktop-heading-1 span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .desktop-heading-2 {
             font-size: 24px;
+            opacity: 0;
+            mix-blend-mode: normal;
+        }
+
+        .desktop-heading-2 span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .mobile-heading-1,
+        .mobile-heading-2 {
+            display: none;
         }
 
         .right-area {
-            width: 70%;
+            flex: 1;
         }
 
         .cursor {
             pointer-events: none;
+            z-index: 9999;
         }
 
         .cursor__ball {
@@ -94,77 +125,296 @@
             top: 0;
             left: 0;
             mix-blend-mode: difference;
-            z-index: 1000;
+            z-index: 9999;
         }
 
         .cursor__ball circle {
             fill: white;
         }
+
+        /* Mobile Styles */
+        @media screen and (max-width: 767px) {
+            body {
+                cursor: auto;
+            }
+
+            .cursor {
+                display: none;
+            }
+
+            .left-area {
+                display: none;
+            }
+
+            .content-overlay {
+                padding: 0;
+            }
+
+            .branding {
+                font-size: 96px;
+                left: 20px;
+                top: 20px;
+            }
+
+            .mobile-heading-1 {
+                display: block;
+                position: absolute;
+                left: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                font-size: 24px;
+                font-weight: 600;
+                letter-spacing: 0.5px;
+                line-height: 1.3;
+                color: white;
+                mix-blend-mode: difference;
+                z-index: 3;
+                opacity: 0;
+                font-family: "Poppins", sans-serif;
+            }
+
+            .mobile-heading-1 span {
+                display: inline-block;
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            .mobile-heading-2 {
+                display: block;
+                position: absolute;
+                left: 20px;
+                bottom: 40px;
+                font-size: 24px;
+                font-weight: 500;
+                letter-spacing: 1px;
+                line-height: 1.4;
+                color: white;
+                mix-blend-mode: difference;
+                z-index: 3;
+                opacity: 0;
+                font-family: "Poppins", sans-serif;
+            }
+
+            .mobile-heading-2 span {
+                display: inline-block;
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .branding {
+                font-size: 96px;
+            }
+
+            .mobile-heading-1 {
+                font-size: 20px;
+            }
+
+            .mobile-heading-2 {
+                font-size: 20px;
+            }
+        }
+
+        /* Tablet Styles */
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            .left-area {
+                width: 30%;
+                padding: 15px;
+            }
+
+            .branding {
+                font-size: 180px;
+                left: 15px;
+                top: 15px;
+            }
+
+            .desktop-heading-1 {
+                font-size: 26px;
+            }
+
+            .desktop-heading-2 {
+                font-size: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <!-- Custom Cursor (Desktop Only) -->
     <div class="cursor">
         <div class="cursor__ball cursor__ball--big">
-            <svg height="50" width="50">
+            <svg height="30" width="30">
                 <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
             </svg>
         </div>
 
         <div class="cursor__ball cursor__ball--small">
-            <svg height="20" width="20">
+            <svg height="10" width="10">
                 <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
             </svg>
         </div>
     </div>
 
     <div class="hero-section">
+        <!-- Background Video -->
         <video class="background-video" autoplay loop muted playsinline>
-            <source src="https://video.wixstatic.com/video/e78e78_aa70e916e03446b5b0d53dfe3a1bb0bc/1080p/mp4/file.mp4" type="video/mp4">
+            <source src="https://video.wixstatic.com/video/e78e78_aa70e916e03446b5b0d53dfe3a1bb0bc/1080p/mp4/file.mp4"
+                type="video/mp4">
         </video>
-        
+
+        <!-- Branding -->
         <div class="branding">
             CAMCREW
         </div>
-        
+
+        <!-- Content Overlay -->
         <div class="content-overlay">
+            <!-- Desktop Left Area -->
             <div class="left-area">
-                <div style="height: 256px;"></div> <!-- Spacer for branding -->
-                <div class="heading-1">
+                <div style="height: 256px;"></div>
+                <div class="desktop-heading-1">
                     <span>A DIGITAL VIDEO</span><br>
                     <span>PRODUCTION</span><br>
                     <span>STUDIO</span>
                 </div>
-                <div class="heading-2">
+                <div class="desktop-heading-2">
                     <span>BOLD,</span><br>
                     <span>CREATIVE,</span><br>
                     <span>VISUALS.</span>
                 </div>
             </div>
             <div class="right-area"></div>
+            
+            <!-- Mobile Text (positioned absolutely) -->
+            <div class="mobile-heading-1">
+                <span>A DIGITAL VIDEO</span><br>
+                <span>PRODUCTION</span><br>
+                <span>STUDIO</span>
+            </div>
+            <div class="mobile-heading-2">
+                <span>BOLD,</span><br>
+                <span>CREATIVE,</span><br>
+                <span>VISUALS.</span>
+            </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script>
-        const $bigBall = document.querySelector('.cursor__ball--big');
-        const $smallBall = document.querySelector('.cursor__ball--small');
+        // Check if device is mobile
+        const isMobile = window.innerWidth <= 767;
 
-        // Move the cursor
-        document.body.addEventListener('mousemove', function(e) {
-            TweenMax.to($bigBall, .4, {
-                x: e.pageX - 15,
-                y: e.pageY - 15
+        // Custom Cursor Animation (Desktop Only)
+        if (!isMobile) {
+            const bigBall = document.querySelector('.cursor__ball--big');
+            const smallBall = document.querySelector('.cursor__ball--small');
+
+            document.body.addEventListener('mousemove', function (e) {
+                gsap.to(bigBall, {
+                    duration: 0.4,
+                    x: e.pageX - 15,
+                    y: e.pageY - 15,
+                    ease: "power2.out"
+                });
+                gsap.to(smallBall, {
+                    duration: 0.1,
+                    x: e.pageX - 5,
+                    y: e.pageY - 7,
+                    ease: "power2.out"
+                });
             });
-            TweenMax.to($smallBall, .1, {
-                x: e.pageX - 5,
-                y: e.pageY - 7
-            });
+        }
+
+        // Page Load Animations
+        window.addEventListener('load', function () {
+            const timeline = gsap.timeline();
+
+            if (isMobile) {
+                // Mobile Animations
+                const mobileHeading1 = document.querySelector('.mobile-heading-1');
+                const mobileHeading2 = document.querySelector('.mobile-heading-2');
+                
+                timeline
+                    .to('.branding', {
+                        duration: 1.2,
+                        opacity: 1,
+                        y: 0,
+                        ease: "power3.out"
+                    })
+                    .to(mobileHeading1, {
+                        duration: 0.8,
+                        opacity: 1,
+                        y: 0,
+                        ease: "power2.out"
+                    }, "-=0.4")
+                    .to(mobileHeading1.querySelectorAll('span'), {
+                        duration: 0.6,
+                        opacity: 1,
+                        x: 0,
+                        stagger: 0.15,
+                        ease: "power2.out"
+                    }, "-=0.6")
+                    .to(mobileHeading2, {
+                        duration: 0.8,
+                        opacity: 1,
+                        y: 0,
+                        ease: "power2.out"
+                    }, "-=0.3")
+                    .to(mobileHeading2.querySelectorAll('span'), {
+                        duration: 0.6,
+                        opacity: 1,
+                        x: 0,
+                        stagger: 0.15,
+                        ease: "power2.out"
+                    }, "-=0.6");
+            } else {
+                // Desktop Animations
+                timeline
+                    .to('.branding', {
+                        duration: 1.5,
+                        opacity: 1,
+                        y: 0,
+                        ease: "power3.out"
+                    })
+                    .to('.desktop-heading-1', {
+                        duration: 0.8,
+                        opacity: 1,
+                        x: 0,
+                        ease: "power2.out"
+                    }, "-=0.8")
+                    .to('.desktop-heading-1 span', {
+                        duration: 0.7,
+                        opacity: 1,
+                        x: 0,
+                        stagger: 0.2,
+                        ease: "power2.out"
+                    }, "-=0.6")
+                    .to('.desktop-heading-2', {
+                        duration: 0.8,
+                        opacity: 1,
+                        x: 0,
+                        ease: "power2.out"
+                    }, "-=0.4")
+                    .to('.desktop-heading-2 span', {
+                        duration: 0.7,
+                        opacity: 1,
+                        x: 0,
+                        stagger: 0.2,
+                        ease: "power2.out"
+                    }, "-=0.6");
+            }
+        });
+
+        // Handle window resize
+        let resizeTimer;
+        window.addEventListener('resize', function () {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function () {
+                location.reload();
+            }, 250);
         });
     </script>
 </body>
 
 </html>
-
-
-
