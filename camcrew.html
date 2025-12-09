@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAMCREW</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            cursor: none;
+        }
+
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .content-overlay {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+
+        .left-area {
+            width: 30%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+            color: white;
+            background-color: black;
+        }
+
+        .branding {
+            position: absolute;
+            font-size: 256px;
+            font-family: "Bebas Neue", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            color: white;
+            mix-blend-mode: difference;
+            z-index: 3;
+            left: 20px;
+            top: 20px;
+            line-height: 0.85;
+            pointer-events: none;
+        }
+
+        .heading-1 {
+            font-size: 32px;
+        }
+
+        .heading-2 {
+            font-size: 24px;
+        }
+
+        .right-area {
+            width: 70%;
+        }
+
+        .cursor {
+            pointer-events: none;
+        }
+
+        .cursor__ball {
+            position: fixed;
+            top: 0;
+            left: 0;
+            mix-blend-mode: difference;
+            z-index: 1000;
+        }
+
+        .cursor__ball circle {
+            fill: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cursor">
+        <div class="cursor__ball cursor__ball--big">
+            <svg height="50" width="50">
+                <circle cx="15" cy="15" r="12" stroke-width="0"></circle>
+            </svg>
+        </div>
+
+        <div class="cursor__ball cursor__ball--small">
+            <svg height="20" width="20">
+                <circle cx="5" cy="5" r="4" stroke-width="0"></circle>
+            </svg>
+        </div>
+    </div>
+
+    <div class="hero-section">
+        <video class="background-video" autoplay loop muted playsinline>
+            <source src="camcrew-hero-section-video.mp4" type="video/mp4">
+        </video>
+        
+        <div class="branding">
+            CAMCREW
+        </div>
+        
+        <div class="content-overlay">
+            <div class="left-area">
+                <div style="height: 256px;"></div> <!-- Spacer for branding -->
+                <div class="heading-1">
+                    <span>A DIGITAL VIDEO</span><br>
+                    <span>PRODUCTION</span><br>
+                    <span>STUDIO</span>
+                </div>
+                <div class="heading-2">
+                    <span>BOLD,</span><br>
+                    <span>CREATIVE,</span><br>
+                    <span>VISUALS.</span>
+                </div>
+            </div>
+            <div class="right-area"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script>
+        const $bigBall = document.querySelector('.cursor__ball--big');
+        const $smallBall = document.querySelector('.cursor__ball--small');
+
+        // Move the cursor
+        document.body.addEventListener('mousemove', function(e) {
+            TweenMax.to($bigBall, .4, {
+                x: e.pageX - 15,
+                y: e.pageY - 15
+            });
+            TweenMax.to($smallBall, .1, {
+                x: e.pageX - 5,
+                y: e.pageY - 7
+            });
+        });
+    </script>
+</body>
+
+</html>
